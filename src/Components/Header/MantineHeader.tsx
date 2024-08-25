@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import {
@@ -28,22 +28,30 @@ import { AuthContext } from "../../Context/AuthContext";
 import classes from "./MantineHeader.module.css";
 
 
-const links = [
-  { link: "/Home", label: "Home" },
-  { link: "/About", label: "About" },
-  { link: "/Scene/UploadASplatScene", label: "Render Local Scene" },
-  // { link: '/MyScenes', label: 'My Scenes' },
-];
 
 function MantineHeader() {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
   const { isAuthenticated, username, logout } = useContext(AuthContext);
-
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme("dark");
-
   const navigate = useNavigate();
+
+  const links = useMemo(() => {
+    const baseLinks = [
+      { link: "/Home", label: "Home" },
+      { link: "/About", label: "About" },
+      { link: "/Scene/UploadASplatScene", label: "Render Local Scene" },
+    ];
+
+    if (isAuthenticated) {
+      baseLinks.push({ link: '/MyScenes', label: 'My Scenes' });
+    }
+
+    return baseLinks;
+  }, [isAuthenticated]);
+
+  const [active, setActive] = useState(links[0].link);
+
   const items = links.map((link) => (
     <a
       key={link.label}
@@ -60,6 +68,8 @@ function MantineHeader() {
       {link.label}
     </a>
   ));
+  
+
 
   function cx(icon: string, light: string): string | undefined {
     return `${icon} ${light}`;
@@ -164,7 +174,7 @@ function MantineHeader() {
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         </Group>
       </Container>
-      
+
       <Transition transition="pop-top-right" duration={200} mounted={opened}>
         {(styles) => (
           <Paper className={classes.dropdown} withBorder style={styles}>

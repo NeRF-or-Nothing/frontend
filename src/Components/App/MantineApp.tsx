@@ -11,6 +11,7 @@ import MantineHeader from "../Header/MantineHeader";
 import MantineHome from "../Home/MantineHome";
 import MantineLogin from "../Login/MantineLogin";
 import MantineSignup from "../Signup/MantineSignup";
+import MantineSceneHistory from "../SceneHistory/MantineSceneHistory";
 
 function MantineApp() {
 
@@ -30,6 +31,7 @@ function MantineApp() {
                   <Route path="/Home" element={<MantineHome />} />
                   <Route path="/Login" element={<MantineLogin />} />
                   <Route path="/Signup" element={<MantineSignup />} />
+                  <Route path="/MyScenes" element={<MantineSceneHistory />} />
                   {/* Add other routes here */}
                 </Routes>
               </AppShell.Main>
