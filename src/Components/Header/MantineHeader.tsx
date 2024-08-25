@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import {
@@ -12,8 +12,6 @@ import {
   UnstyledButton,
   Avatar,
   Menu,
-  Switch,
-  useMantineTheme,
   useMantineColorScheme,
   useComputedColorScheme,
   ActionIcon,
@@ -24,13 +22,11 @@ import {
   IconSettings,
   IconChevronDown,
   IconSun,
-  IconMoonStars,
   IconMoon,
 } from "@tabler/icons-react";
 import { AuthContext } from "../../Context/AuthContext";
 import classes from "./MantineHeader.module.css";
 
-const HEADER_HEIGHT = rem(60);
 
 const links = [
   { link: "/Home", label: "Home" },
@@ -39,7 +35,7 @@ const links = [
   // { link: '/MyScenes', label: 'My Scenes' },
 ];
 
-export function MantineHeader() {
+function MantineHeader() {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { isAuthenticated, username, logout } = useContext(AuthContext);
@@ -168,6 +164,7 @@ export function MantineHeader() {
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         </Group>
       </Container>
+      
       <Transition transition="pop-top-right" duration={200} mounted={opened}>
         {(styles) => (
           <Paper className={classes.dropdown} withBorder style={styles}>
@@ -211,3 +208,5 @@ export function MantineHeader() {
     </header>
   );
 }
+
+export default MantineHeader;

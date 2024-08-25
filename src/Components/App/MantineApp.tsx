@@ -1,14 +1,16 @@
 import {
   MantineProvider,
   AppShell,
-  useMantineColorScheme,
   ColorSchemeScript,
 } from "@mantine/core";
-import { AuthProvider } from "../../Context/AuthContext";
-import { MantineHeader } from "../Header/MantineHeader";
-import MantineHome from "../Home/MantineHome";
 import { theme } from "../../theme";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+
+import { AuthProvider } from "../../Context/AuthContext";
+import MantineHeader from "../Header/MantineHeader";
+import MantineHome from "../Home/MantineHome";
+import MantineLogin from "../Login/MantineLogin";
+import MantineSignup from "../Signup/MantineSignup";
 
 function MantineApp() {
 
@@ -26,6 +28,8 @@ function MantineApp() {
                 <Routes>
                   <Route path="/" element={<MantineHome />} />
                   <Route path="/Home" element={<MantineHome />} />
+                  <Route path="/Login" element={<MantineLogin />} />
+                  <Route path="/Signup" element={<MantineSignup />} />
                   {/* Add other routes here */}
                 </Routes>
               </AppShell.Main>
