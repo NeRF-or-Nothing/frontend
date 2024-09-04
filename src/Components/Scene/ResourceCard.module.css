@@ -1,0 +1,11 @@
+.card {
+  padding: var(--mantine-spacing-md);
+}
+
+.title {
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.select {
+  width: 100%;
+}

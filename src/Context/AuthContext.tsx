@@ -1,7 +1,7 @@
 /**
  * @file AuthContext.tsx
  * @desc Context for authentication state and functions. Handles logout. Upon successful login,
- * stores JWT and username in localStorage.
+ * stores JWT and username in localStorage. Context is passed to all child components via AuthProvider.
  */
 
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
@@ -29,8 +29,8 @@ interface AuthProviderProps {
 }
 
 /**
- * @desc Passes localStorage JWT and username to Child HTML elements
- * @param param0 - child ReactNode elements
+ * @desc Passes localStorage JWT and username to Child react nodes.
+ * Handles login and logout functions.
  */
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);

@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.tabsContainer {
+  margin-bottom: var(--mantine-spacing-xl);
+}
+
+.outputViewerContainer {
+  flex-grow: 1;
+  min-height: 400px;
+  height: calc(100vh - 300px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorContainer {
+  composes: loadingContainer;
+}

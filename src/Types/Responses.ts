@@ -5,7 +5,7 @@
 
 /**
  * JSON structure of metadata given with any "resource associated" response from the backend
- * and also returns as json. Will not work on thumbnail or output resources, as they have
+ * that encodes as json. Will not work on thumbnail or output resources, as they have
  * content-encoding that is not json.
  */
 export interface RequestMetaData {
@@ -23,9 +23,15 @@ export interface LoginUserResponse extends RequestMetaData {
 
 /**
  * JSON structure of register response from the backend. 
- * Boole
  */
 export interface RegisterUserResponse extends RequestMetaData {
+  success: boolean;
+}
+
+/**
+ * JSON structure of response to modify a user from the backend.
+ */
+export interface ModifyUserResponse extends RequestMetaData {
   success: boolean;
 }
 

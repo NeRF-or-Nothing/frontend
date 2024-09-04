@@ -3,7 +3,7 @@
  * @desc Commonly used fetch api calls to backend. Functions should adhere to 
  * the Types/Functions.ts definitions.
  * 
- * In order to be consistent with Types/Function, all functions return null on failure.
+ * In order to be consistent with ../Types/Function.ts, all functions return null on failure.
  * All http errors handling should be done in the fetch calls.
  * 
  * Any function that requires an auth token should have the token as the first argument.
@@ -18,12 +18,13 @@ import {
   SceneNameResponse,
   SceneProgressResponse,
   UserSceneHistoryResponse,
+  ModifyUserResponse,
 } from '../Types/Responses';
 
 
 /**
  * @desc Logs existing user into NeRF-Or-Nothing
- * @returns JWT token containing userID on success, null on failure
+ * @returns Response containing JWT token of userID on success, null on failure
  * @implements FetchFunction
  */
 async function fetchLogin (
@@ -57,7 +58,7 @@ async function fetchLogin (
 
 /**
  * @desc Registers a new user with NeRF-Or-Nothing
- * @returns True on success, false on failure
+ * @returns Response containing True on success, false on failure
  * @implements FetchFunction
  */
 async function fetchRegister(
@@ -99,14 +100,14 @@ async function fetchRegister(
 /**
  * @desc Changes the username of the user if the new username is available
  * Requires the user's password for verification
- * @returns true on success, null on failure
+ * @returns Response containing success, null on failure
  * @implements AuthedFetchFunction
  */
 async function fetchChangeUsername(
   token: string,
   password: string,
   newUsername: string,
-): Promise<boolean | null> {
+): Promise<ModifyUserResponse | null> {
   try {
     const url = `${BACKEND_URL}/user/account/update/username`;
 
@@ -123,7 +124,7 @@ async function fetchChangeUsername(
       }),
     });
 
-    const data = await response.json();
+    const data = await response.json() as ModifyUserResponse;
 
     if (!response.ok) {
       throw new Error(
@@ -133,7 +134,7 @@ async function fetchChangeUsername(
       );
     }
 
-    return true;
+    return data;
   } catch (error) {
     console.error('Fetch error:', error);
     return null;
@@ -142,14 +143,14 @@ async function fetchChangeUsername(
 
 /**
  * @desc Changes the password of the user. Requires old password for verification
- * @returns true on success, null on failure
+ * @returns Response containing success, null on failure
  * @implements AuthedFetchFunction
  */
 async function fetchChangePassword(
   token: string,
   oldPassword: string,
   newPassword: string,
-): Promise<boolean | null> {
+): Promise<ModifyUserResponse | null> {
   try {
     const url = `${BACKEND_URL}/user/account/update/password`;
 
@@ -166,7 +167,7 @@ async function fetchChangePassword(
       }),
     });
 
-    const data = await response.json();
+    const data = await response.json() as ModifyUserResponse;
 
     if (!response.ok) {
       throw new Error(
@@ -176,7 +177,7 @@ async function fetchChangePassword(
       );
     }
 
-    return true;
+    return data;
   } catch (error) {
     console.error('Fetch error:', error);
     return null;
@@ -185,13 +186,13 @@ async function fetchChangePassword(
 
 /**
  * @desc Deletes a scene from the user's history
- * @returns true on success, null on failure
+ * @returns Response containing success, null on failure
  * @implements AuthedFetchFunction
  */
 async function fetchDeleteScene(
   token: string,
   sceneID: string,
-): Promise<boolean | null> {
+): Promise<ModifyUserResponse | null> {
   try {
     const url = `${BACKEND_URL}/user/scene/delete${sceneID}`;
 
@@ -214,7 +215,7 @@ async function fetchDeleteScene(
       );
     }
 
-    return true;
+    return data;
   } catch (error) {
     console.error('Fetch error:', error);
     return null;
@@ -229,7 +230,7 @@ async function fetchDeleteScene(
 async function fetchDeleteAccount(
   token: string,
   password: string,
-): Promise<boolean | null> {
+): Promise<ModifyUserResponse | null> {
   try {
     const url = `${BACKEND_URL}/user/account/delete`;
 
@@ -245,7 +246,7 @@ async function fetchDeleteAccount(
       }),
     });
 
-    const data = await response.json();
+    const data = await response.json() as ModifyUserResponse;
 
     if (!response.ok) {
       throw new Error(
@@ -255,7 +256,7 @@ async function fetchDeleteAccount(
       );
     }
 
-    return true;
+    return data;
   } catch (error) {
     console.error('Fetch error:', error);
     return null;

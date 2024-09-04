@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { FileInput, Button, Alert, Stack } from '@mantine/core';
-import { IconUpload, IconAlertCircle } from '@tabler/icons-react';
-import { RequestMetaData } from '../../../Types/Responses';
-import { fetchPostVideo } from '../../../Fetch/CommonApiCalls';
-import ConfigSelector from './ConfigSelector';
-import { TrainingConfig } from '../../../Types/TrainingConfig';
-import { useAuthFetchRetry } from '../../../Fetch/Retry';
+/**
+ * @file VideoUpload.tsx
+ * @desc This component allows the user to upload a video file and select a configuration for processing.
+ */
+
+import React, { useState } from "react";
+import { FileInput, Button, Alert, Stack } from "@mantine/core";
+import { IconUpload, IconAlertCircle } from "@tabler/icons-react";
+import { RequestMetaData } from "../../../Types/Responses";
+import { fetchPostVideo } from "../../../Fetch/CommonApiCalls";
+import ConfigSelector from "./ConfigSelector";
+import { TrainingConfig } from "../../../Types/TrainingConfig";
+import { useAuthFetchRetry } from "../../../Fetch/Retry";
 
 interface VideoUploadProps {
   onUpload: (data: RequestMetaData) => void;
@@ -16,12 +21,11 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ onUpload }) => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [config, setConfig] = useState<TrainingConfig>({
-    trainingMode: 'gaussian',
+    trainingMode: "gaussian",
     outputTypes: [],
     saveIterations: [],
-    sceneName: '',
+    sceneName: "",
   });
-
   const authRetryFetchPostVideo = useAuthFetchRetry(fetchPostVideo);
 
   const handleFileChange = (file: File | null) => {
@@ -37,12 +41,13 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ onUpload }) => {
 
   const isConfigValid = () => {
     return (
-      config.trainingMode !== '' &&
+      config.trainingMode !== "" &&
       config.outputTypes.length > 0 &&
       config.saveIterations.length > 0
     );
   };
 
+  // Send video and config to the backend for new scene creation
   const handleUpload = async () => {
     if (!file) return;
 
@@ -50,18 +55,18 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ onUpload }) => {
     setError(null);
 
     const response = await authRetryFetchPostVideo(file, config);
-    
+
     setUploading(false);
 
     if (response !== null) {
       onUpload(response);
     } else {
-      setError('Upload failed');
+      setError("Upload failed");
     }
   };
 
   return (
-    <Stack >
+    <Stack>
       <FileInput
         accept=".mp4"
         label="Choose video file"
@@ -69,7 +74,7 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ onUpload }) => {
         rightSection={<IconUpload size="1rem" />}
         onChange={handleFileChange}
       />
-      
+
       {file && (
         <>
           <ConfigSelector onConfigChange={handleConfigChange} />
@@ -78,11 +83,11 @@ const VideoUpload: React.FC<VideoUploadProps> = ({ onUpload }) => {
             disabled={uploading || !isConfigValid()}
             loading={uploading}
           >
-            {uploading ? 'Uploading...' : 'Upload Video'}
+            {uploading ? "Uploading..." : "Upload Video"}
           </Button>
         </>
       )}
-      
+
       {error && (
         <Alert icon={<IconAlertCircle size="1rem" />} title="Error" color="red">
           {error}

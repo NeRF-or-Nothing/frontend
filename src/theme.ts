@@ -1,3 +1,9 @@
+/**
+ * @file theme.ts
+ * @desc This file contains the theme configuration for the MantineProvider in the MantineApp component.
+ * If you want to customize the theme, you can do so here.
+ */
+
 import { createTheme, MantineColorsTuple } from '@mantine/core';
 
 const myColor: MantineColorsTuple = [

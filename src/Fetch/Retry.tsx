@@ -11,7 +11,7 @@ import { FetchFunction, AuthedFetchFunction } from "../Types/Functions";
 /**
  * Custom hook to retry a commonApiCalls fetch function with a delay and a max number of retries.
  * 
- * This adheres to the FetchFunction type definition. see Types/Functions.ts for more details.
+ * This adheres to the FetchFunction type definition. see ../Types/Functions.ts for more details.
  */
 export function useFetchRetry <T, Args extends any[]>(
   fetchFn: FetchFunction<T, Args>,
@@ -52,8 +52,7 @@ export function useFetchRetry <T, Args extends any[]>(
  * between AuthContext react DOM rerendering and the fetch calls. This hook will retry the fetch
  * function until the authentication token is loaded (with a delay and a max number of retries).
  * 
- * This adheres to the AuthedFetchFunction type definition. see Types/Functions.ts for more details.
- * 
+ * This adheres to the AuthedFetchFunction type definition. see ../Types/Functions.ts for more details.
  */
 export function useAuthFetchRetry<T, Args extends any[]>(
   fetchFn: AuthedFetchFunction<T, Args>,

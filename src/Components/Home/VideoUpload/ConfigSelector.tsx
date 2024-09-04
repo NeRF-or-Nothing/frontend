@@ -1,3 +1,10 @@
+/**
+ * @file ConfigSelector.tsx
+ * @desc This component contains forms and buttons to select a training configuration.
+ * This component functions as a child component to one that requires a training configuration.
+ * Upon user input, this component will update the parent component with the new configuration.
+ */
+
 import React, { useState, useEffect } from "react";
 import {
   Stack,

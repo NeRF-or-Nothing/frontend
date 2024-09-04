@@ -1,12 +1,22 @@
-import { Container, Title, Text, Button, Group, Paper, Progress, Stack } from "@mantine/core";
-import { useEffect, useState } from "react";
+/**
+ * @file Home.tsx
+ * @desc Home component. This component should be a functionality hub for the user. 
+ * It should allow the user to upload a video file, check the progress of the job, 
+ * and navigate to other parts of the application. If future backend functionality is added,
+ * consider splitting this into smaller components.
+ */
+
+import { Container, Title, Text, Button, Group, Paper, Progress, Stack, Center } from "@mantine/core";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RequestMetaData, SceneProgressResponse } from "../../Types/Responses";
 import { fetchSceneProgress } from "../../Fetch/CommonApiCalls";
 import { useAuthFetchRetry } from "../../Fetch/Retry";
+import { AuthContext } from "../../Context/AuthContext";
 import VideoUpload from "./VideoUpload/VideoUpload";
 
 function Home() {
+  const { isAuthenticated } = useContext(AuthContext);
   const [sceneID, setSceneId] = useState<string | null>(null);
   const [progress, setProgress] = useState<SceneProgressResponse | null>(null);
   const [wasProcessing, setWasProcessing] = useState(false);
@@ -28,10 +38,7 @@ function Home() {
             console.error(progress.error);
             return;
           }
-
           setProgress(progress);
-
-          console.log("progress: ", progress);
 
           // Scene Processing
           if (!wasProcessing && progress.processing) {
@@ -51,6 +58,7 @@ function Home() {
     }
   }, [sceneID, wasProcessing]);
 
+  // Update new job info/error
   const handleUpload = (newJobInfo: RequestMetaData) => {
     if (newJobInfo.error) {
       console.error(newJobInfo.error);
@@ -60,12 +68,35 @@ function Home() {
   };
 
   const handleGoToMyScenes = () => {
-    navigate("/MyScenes");
+    navigate("/SceneHistory");
   };
 
   const handleGoToScene = () => {
     navigate(`/Scene?scene_id=${sceneID}`);
   };
+
+  // Not Logged In - Show Landing Page
+  if (!isAuthenticated) {
+    return (
+      <Container size="md" style={{ height: '100vh' }}>
+        <Center style={{ height: '100%' }}>
+          <Stack align="center">
+            <Title order={2} ta="center">
+              Experience the Magic of Scene Reconstruction
+            </Title>
+            <Text size="lg" ta="center">
+              Create an account or login to upload your videos and watch them transform into interactive 3D scenes!
+            </Text>
+            <Group>
+              <Button onClick={() => navigate("/Signup")}>Create Account</Button>
+              <Button onClick={() => navigate("/Login")} variant="outline">Login</Button>
+            </Group>
+          </Stack>
+        </Center>
+      </Container>
+    );
+  }
+
 
   return (
     <Stack mih="100vh">
@@ -83,6 +114,7 @@ function Home() {
             happen.
           </Title>
           <Text ta="center" size="sm">
+            *Video file must smaller than 16MB. <br />
             *Video file must be in .mp4 format. <br />
             *TensoRF is no longer accepting new video uploads.
           </Text>

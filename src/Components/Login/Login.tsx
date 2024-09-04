@@ -1,3 +1,9 @@
+/**
+ * @file Login.tsx
+ * @desc This component allows the user to login to the application. Receives JWT token from the backend
+ * to sign in the user. If login is successful, the user is redirected to the home page.
+ */
+
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -16,9 +22,9 @@ import { IconAlertCircle } from "@tabler/icons-react";
 import { fetchLogin } from "../../Fetch/CommonApiCalls";
 import { AuthContext } from "../../Context/AuthContext";
 import { useFetchRetry } from "../../Fetch/Retry";
-import classes from "./MantineLogin.module.css";
+import classes from "./Login.module.css";
 
-function MantineLogin() {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -98,4 +104,4 @@ function MantineLogin() {
   );
 }
 
-export default MantineLogin;
+export default Login;

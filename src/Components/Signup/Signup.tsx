@@ -1,33 +1,50 @@
-import { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { TextInput, PasswordInput, Button, Paper, Title, Text, Container, Group, Anchor, Alert } from '@mantine/core';
-import { IconAlertCircle } from '@tabler/icons-react';
-import { fetchRegister } from '../../Fetch/CommonApiCalls';
-import { useFetchRetry } from '../../Fetch/Retry';
-import classes from './MantineSignup.module.css';
+/**
+ * @file Signup.tsx
+ * @desc This component allows the user to sign up for the application. Upon successful registration,
+ * user is redirected to login page.
+ */
 
-function MantineLogin() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Paper,
+  Title,
+  Text,
+  Container,
+  Group,
+  Anchor,
+  Alert,
+} from "@mantine/core";
+import { IconAlertCircle } from "@tabler/icons-react";
+import { fetchRegister } from "../../Fetch/CommonApiCalls";
+import { useFetchRetry } from "../../Fetch/Retry";
+import classes from "./Signup.module.css";
+
+function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-
   const retryFetchRegister = useFetchRetry(fetchRegister);
-  
 
+  // Submit registration form to backend
   const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError('');
+    setError("");
 
     try {
       const response = await retryFetchRegister(username, password);
 
       if (response?.success) {
-        navigate('/Login');
+        navigate("/Login");
       } else {
-        setError(`Registration failed. Please try again.\nError: ${response?.error}`);
+        setError(
+          `Registration failed. Please try again.\nError: ${response?.error}`
+        );
       }
-
     } catch (error: any) {
       setError(error.message);
     }
@@ -39,7 +56,7 @@ function MantineLogin() {
         Lets Get Nerfing!
       </Title>
       <Text c="dimmed" size="sm" ta="center" mt={5}>
-        Already have an account?{' '}
+        Already have an account?{" "}
         <Anchor size="sm" component={Link} to="/Login">
           Sign in
         </Anchor>
@@ -73,7 +90,12 @@ function MantineLogin() {
         </form>
 
         {error && (
-          <Alert icon={<IconAlertCircle size="1rem" />} title="Error" color="red" mt="md">
+          <Alert
+            icon={<IconAlertCircle size="1rem" />}
+            title="Error"
+            color="red"
+            mt="md"
+          >
             {error}
           </Alert>
         )}
@@ -82,4 +104,4 @@ function MantineLogin() {
   );
 }
 
-export default MantineLogin;
+export default Login;

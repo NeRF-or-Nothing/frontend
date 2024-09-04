@@ -1,4 +1,9 @@
-// TrainingConfig
+/**
+ * @file TrainingConfig.ts
+ * @desc This file contains type declarations for training configurations. This could 
+ * probably be moved into ConfigSelector component.
+ */
+
 export interface TrainingConfig {
     trainingMode: string;
     outputTypes: string[];
