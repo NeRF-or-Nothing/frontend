@@ -17,6 +17,7 @@ import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer"
 import SceneHistory from "../SceneHistory/SceneHistory";
 import Scene from "../Scene/Scene";
 import LocalScene from "../Scene/LocalScene/LocalScene";
@@ -42,10 +43,14 @@ function MantineApp() {
                   <Route path="/Signup" element={<Signup />} />
                   <Route path="/SceneHistory" element={<SceneHistory />} />\
                   <Route path="/Scene" element={<Scene />} />
-                  <Route path="/Scene/Local" element={<LocalScene />} />
+                  <Route path="/Scene/LocalScene" element={<LocalScene />} />
                   {/* Add other routes here */}
                 </Routes>
               </AppShell.Main>
+
+              <AppShell.Footer>
+                  <Footer />
+              </AppShell.Footer>
               
             </AppShell>
           </AuthProvider>

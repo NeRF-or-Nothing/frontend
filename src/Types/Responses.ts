@@ -71,7 +71,7 @@ export interface SceneNameResponse extends RequestMetaData {
 }
 
 /**
- * JSON strucutre of scene queue position response from the backend.
+ * JSON structure of scene queue position response from the backend.
  * Contains request metadata, the stage of the scene, and the position in the stages queue.
  */
 export interface SceneProgressResponse extends RequestMetaData {
