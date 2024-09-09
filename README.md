@@ -133,3 +133,6 @@ For more detailed information about the project, please refer to the following w
 - [Styling and Theming](./wiki/Styling-and-Theming)
 - [Testing and Quality Assurance](./wiki/Testing-and-Quality-Assurance)
 - [Deployment Guide](./wiki/Deployment-Guide)
+
+## Acknowledgements
+- Compressed Gaussian Splatting Vertext and Fragment Shaders [From AntiMatter15](https://github.com/antimatter15/splat)
