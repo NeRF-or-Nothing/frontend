@@ -123,16 +123,16 @@ Deployment instructions are available in the [Deployment Guide](./wiki/Deploymen
 
 For more detailed information about the project, please refer to the following wiki pages:
 
-- [Wiki Home](./wiki/Home)
-- [Architecture Overview](./wiki/Architecture-Overview)
-- [Component Guide](./wiki/Component-Guide)
-- [State Management](./wiki/State-Management)
-- [API Integration](./wiki/API-Integration)
-- [Authentication](./wiki/Authentication)
-- [Routing](./wiki/Routing)
-- [Styling and Theming](./wiki/Styling-and-Theming)
-- [Testing and Quality Assurance](./wiki/Testing-and-Quality-Assurance)
-- [Deployment Guide](./wiki/Deployment-Guide)
+- [Wiki Home]((https://github.com/NeRF-or-Nothing/frontend/wiki))
+- [Architecture Overview](https://github.com/NeRF-or-Nothing/frontend/wiki/Architecture-Overview)
+- [Component Guide](https://github.com/NeRF-or-Nothing/frontend/wiki/Component-Guide)
+- [State Management](https://github.com/NeRF-or-Nothing/frontend/wiki/State-Management)
+- [API Integration](https://github.com/NeRF-or-Nothing/frontend/wiki/API-Integration)
+- [Authentication](https://github.com/NeRF-or-Nothing/frontend/wiki/Authentication)
+- [Routing](https://github.com/NeRF-or-Nothing/frontend/wiki/Routing)
+- [Styling and Theming](https://github.com/NeRF-or-Nothing/frontend/wiki/Styling-and-Theming)
+- [Testing and Quality Assurance](https://github.com/NeRF-or-Nothing/frontend/wiki/Testing-and-Quality-Assurance)
+- [Deployment Guide](https://github.com/NeRF-or-Nothing/frontend/wiki/Deployment-Guide)
 
 ## Acknowledgements
 - Compressed Gaussian Splatting Vertext and Fragment Shaders [From AntiMatter15](https://github.com/antimatter15/splat)
