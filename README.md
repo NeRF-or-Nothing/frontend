@@ -123,7 +123,7 @@ Deployment instructions are available in the [Deployment Guide](./wiki/Deploymen
 
 For more detailed information about the project, please refer to the following wiki pages:
 
-- [Wiki Home]((https://github.com/NeRF-or-Nothing/frontend/wiki))
+- [Wiki Home](https://github.com/NeRF-or-Nothing/frontend/wiki)
 - [Architecture Overview](https://github.com/NeRF-or-Nothing/frontend/wiki/Architecture-Overview)
 - [Component Guide](https://github.com/NeRF-or-Nothing/frontend/wiki/Component-Guide)
 - [State Management](https://github.com/NeRF-or-Nothing/frontend/wiki/State-Management)
