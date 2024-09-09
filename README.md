@@ -123,13 +123,13 @@ Deployment instructions are available in the [Deployment Guide](./wiki/Deploymen
 
 For more detailed information about the project, please refer to the following wiki pages:
 
-- [Wiki Home](./wiki/Home.md)
-- [Architecture Overview](./wiki/Architecture-Overview.md)
-- [Component Guide](./wiki/Component-Guide.md)
-- [State Management](./wiki/State-Management.md)
-- [API Integration](./wiki/API-Integration.md)
-- [Authentication](./wiki/Authentication.md)
-- [Routing](./wiki/Routing.md)
-- [Styling and Theming](./wiki/Styling-and-Theming.md)
-- [Testing and Quality Assurance](./wiki/Testing-and-Quality-Assurance.md)
-- [Deployment Guide](./wiki/Deployment-Guide.md)
+- [Wiki Home](./wiki/Home)
+- [Architecture Overview](./wiki/Architecture-Overview)
+- [Component Guide](./wiki/Component-Guide)
+- [State Management](./wiki/State-Management)
+- [API Integration](./wiki/API-Integration)
+- [Authentication](./wiki/Authentication)
+- [Routing](./wiki/Routing)
+- [Styling and Theming](./wiki/Styling-and-Theming)
+- [Testing and Quality Assurance](./wiki/Testing-and-Quality-Assurance)
+- [Deployment Guide](./wiki/Deployment-Guide)
