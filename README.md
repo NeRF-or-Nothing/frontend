@@ -24,8 +24,8 @@ To set up the project locally, follow these steps:
 
 2. Clone the repository:
    ```
-   git clone https://github.com/your-repo/nerf-or-nothing.git
-   cd nerf-or-nothing
+   git clone https://github.com/NeRF-or-Nothing/frontend.git
+   cd frontend
    ```
 
 3. Install dependencies:
