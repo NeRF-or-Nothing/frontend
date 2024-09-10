@@ -21,6 +21,7 @@ import {
   useMantineColorScheme,
   useComputedColorScheme,
   ActionIcon,
+  Title,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {
@@ -43,7 +44,7 @@ function Header() {
   const links = useMemo(() => {
     const baseLinks = [
       { link: "/Home", label: "Home" },
-      { link: "/About", label: "About" },
+      { link: "/About", label: "About Us" },
       { link: "/Scene/LocalScene", label: "Render Local Scene" },
     ];
 
@@ -72,42 +73,33 @@ function Header() {
       {link.label}
     </a>
   ));
-  
-  // f-string workaround for the dark mode button to function.
-  function cx(icon: string, light: string): string | undefined {
-    return `${icon} ${light}`;
+
+  function cx(...args: (string | undefined)[]): string {
+    return args.filter(Boolean).join(' ');
   }
 
   return (
     <header className={classes.root}>
       <Container size="md" className={classes.header}>
         <Group justify="space-between" h="100%">
-          <Text size="lg" fw={700}>
-            NeRF-or-Nothing
-          </Text>
+          <Group>
+            <Title order={3}>NeRF-or-Nothing</Title>
+            <Text size="sm">Next-gen 3D Scene Reconstruction</Text>
+          </Group>
+
           <Group h="100%" gap={0} visibleFrom="sm">
             {items}
           </Group>
 
           <Group visibleFrom="sm">
             <ActionIcon
-              onClick={() =>
-                setColorScheme(
-                  computedColorScheme === "light" ? "dark" : "light"
-                )
-              }
+              onClick={() => setColorScheme(computedColorScheme === "light" ? "dark" : "light")}
               variant="default"
               size="xl"
               aria-label="Toggle color scheme"
             >
-              <IconSun
-                className={cx(classes.icon, classes.light)}
-                stroke={1.5}
-              />
-              <IconMoon
-                className={cx(classes.icon, classes.dark)}
-                stroke={1.5}
-              />
+              <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
+              <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
             </ActionIcon>
             {isAuthenticated ? (
               <Menu
@@ -122,31 +114,18 @@ function Header() {
                       <Text fw={500} size="sm" lh={1} mr={3}>
                         {username}
                       </Text>
-                      <IconChevronDown
-                        style={{ width: rem(12), height: rem(12) }}
-                        stroke={1.5}
-                      />
+                      <IconChevronDown style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
                     </Group>
                   </UnstyledButton>
                 </Menu.Target>
                 <Menu.Dropdown>
                   <Menu.Item
-                    leftSection={
-                      <IconSettings
-                        style={{ width: rem(16), height: rem(16) }}
-                        stroke={1.5}
-                      />
-                    }
+                    leftSection={<IconSettings style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}
                   >
                     Account settings
                   </Menu.Item>
                   <Menu.Item
-                    leftSection={
-                      <IconLogout
-                        style={{ width: rem(16), height: rem(16) }}
-                        stroke={1.5}
-                      />
-                    }
+                    leftSection={<IconLogout style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}
                     onClick={() => {
                       logout();
                       navigate("/login");
@@ -158,16 +137,10 @@ function Header() {
               </Menu>
             ) : (
               <>
-                <UnstyledButton
-                  className={classes.link}
-                  onClick={() => navigate("/Signup")}
-                >
+                <UnstyledButton className={classes.link} onClick={() => navigate("/Signup")}>
                   Sign up
                 </UnstyledButton>
-                <UnstyledButton
-                  className={classes.link}
-                  onClick={() => navigate("/Login")}
-                >
+                <UnstyledButton className={classes.link} onClick={() => navigate("/Login")}>
                   Log in
                 </UnstyledButton>
               </>
