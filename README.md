@@ -1,5 +1,3 @@
-# REMOVE THIS LINE AFTER PR
-
 # NeRF-or-Nothing Web Application Frontend
 
 ## Overview
